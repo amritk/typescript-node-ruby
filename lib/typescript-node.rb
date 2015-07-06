@@ -13,7 +13,7 @@ module TypeScript
       end
 
       def tsc(*args)
-        cmd = [node, `which tsc`, *args]
+        cmd = [node, "/usr/local/bin/tsc", *args]
         Open3.capture3(*cmd)
       end
 
@@ -23,7 +23,7 @@ module TypeScript
       def compile_file(source_file, *tsc_options)
         Dir.mktmpdir do |output_dir|
           output_file = File.join(output_dir, "out.js")
-          stderr, stdout, exit_status = tsc(*tsc_options, '--out', output_file, source_file)
+          stdout, stderr, exit_status = tsc(*tsc_options, '--out', output_file, source_file)
 
           output_js = File.exists?(output_file) ? File.read(output_file) : nil
           CompileResult.new(
