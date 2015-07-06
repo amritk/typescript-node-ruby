@@ -1,6 +1,5 @@
 require "tmpdir"
 require "tempfile"
-require "typescript-src"
 require "typescript-node/version"
 require "typescript-node/compile_result"
 require "open3"
@@ -10,11 +9,11 @@ module TypeScript
     class << self
 
       def tsc_version
-        TypeScript::Src.version
+        `tsc -v`
       end
 
       def tsc(*args)
-        cmd = [node, Src.tsc_path.to_s, *args]
+        cmd = [node, `which tsc`, *args]
         Open3.capture3(*cmd)
       end
 

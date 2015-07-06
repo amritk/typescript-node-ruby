@@ -16,7 +16,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = TypeScript::Node::VERSION
 
-  gem.add_dependency 'typescript-src', '~> 1.0.1'
   gem.add_development_dependency 'rake'
 
   gem.required_ruby_version = ">= 1.9.3"
